@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Full Stack Development with Nodejs Expressjs Reactjs & MongoDb",
+  "main": "index.js",
+  "engines": {
+    "node": "8.2.1",
+    "npm": "5.3.0",
+  },
+  "scripts": {
+    "start": "node server.js",
+  },
+  "author": "Rizwan Zaheer",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0"
+  }
+}
