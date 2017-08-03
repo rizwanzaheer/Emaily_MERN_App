@@ -4,5 +4,3 @@ module.exports = {
   mongoURI: process.env.MONGO_URI,
   cookieKey: process.env.COOKIE_KEY
 };
-
-mongodb://rizwan-prod:emaily-prod@ds141358.mlab.com:41358/emaily-prod
