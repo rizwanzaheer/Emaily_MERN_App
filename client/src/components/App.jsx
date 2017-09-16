@@ -5,9 +5,9 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Dashboard from './Dashboard';
+import SurveyNew from './surveys/SurveyNew';
 
 const Landing = () => <h2>Welcome in Emaily</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
 const Surveys = () => <h2>Surveys Dashboard</h2>;
 
 class App extends Component {
