@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
+import Dashboard from './Dashboard';
 
-const Landing = () => <h2>Welcome to React</h2>;
-const Contact = () => <h2>contact</h2>;
+const Landing = () => <h2>Welcome in Emaily</h2>;
+const SurveyNew = () => <h2>SurveyNew</h2>;
 const Surveys = () => <h2>Surveys Dashboard</h2>;
 
 class App extends Component {
@@ -21,8 +22,9 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing}/>
-            <Route exact path="/surveys" component={Surveys}/>
-            <Route path="/surveys/contact" component={Contact}/>
+            <Route exact path="/surveys" component={Dashboard}/>
+            <Route path="/surveys/all" component={Surveys}/>
+            <Route path="/surveys/new" component={SurveyNew}/>
           </div>
         </Router>
       </div>
