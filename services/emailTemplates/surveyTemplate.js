@@ -1,3 +1,5 @@
+const keys = require('../../config/keys');
+
 module.exports = survey => {
   return `
     <html>
@@ -13,8 +15,8 @@ module.exports = survey => {
             ${survey.body}
           </p>
           <div>
-            <a herf="http://localhost:3000">Yes</a>
-            <a herf="http://localhost:3000">No</a>
+            <a herf="${keys.redirectDomain}/api/surveys/thanks">Yes</a>
+            <a herf="${keys.redirectDomain}/api/surveys/thanks">No</a>
           </div>
         </div>
       </body>

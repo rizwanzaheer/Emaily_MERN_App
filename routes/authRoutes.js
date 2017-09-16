@@ -2,7 +2,7 @@ const passport = require("passport");
 // Routes
 module.exports = app => {
   app.get("/", (req, res) => {
-    res.send({ hi: "hello,Rizwan" });
+    res.send({ welcome: "Welcome in Emaily!" });
   });
   app.get(
     "/auth/google/",
