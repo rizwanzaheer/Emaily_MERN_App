@@ -17,7 +17,7 @@ const app = express();
 // body parser Any type of Http req
 // goes through here that why used!!!
 
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 // cookieSession
 app.use(
