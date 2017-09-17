@@ -5,10 +5,14 @@ import _ from "lodash";
 import SurveyField from "./SurveyField";
 
 const FIELDS = [
-  { label: "Survey Title", name: "title", noValueError: 'Survey Title' },
-  { label: "Subject Line", name: "subject", noValueError: 'Subject Line' },
-  { label: "Email Body", name: "body", noValueError: 'Email Body' },
-  { label: "Recipient List", name: "emails", noValueError: 'Recipient List Seperated with ","' }
+  { label: "Survey Title", name: "title", noValueError: "Survey Title" },
+  { label: "Subject Line", name: "subject", noValueError: "Subject Line" },
+  { label: "Email Body", name: "body", noValueError: "Email Body" },
+  {
+    label: "Recipient List",
+    name: "emails",
+    noValueError: 'Recipient List Seperated with "," !'
+  }
 ];
 
 class SurveyForm extends Component {
@@ -52,20 +56,20 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {};
   if (!values.title) {
-    errors.title = 'You must provide a title!';
-  } 
-  if(!values.subject) {
-    errors.subject = 'You must provide a Subject!';
+    errors.title = "You must provide a title!";
   }
-  if(!values.body) {
-    errors.body = 'You must provide a Email Body!';
+  if (!values.subject) {
+    errors.subject = "You must provide a Subject!";
   }
-  _.each(FIELDS, ({name,noValueError, label}) => {
-    if(!values[name]){
-      errors[name] = 'You must provide ' + noValueError;
+  if (!values.body) {
+    errors.body = "You must provide a Email Body!";
+  }
+  _.each(FIELDS, ({ name, noValueError, label }) => {
+    if (!values[name]) {
+      errors[name] = "You must provide " + noValueError;
     }
   });
-  // if errors obj is empty then redux form says 
+  // if errors obj is empty then redux form says
   // Oo good to good with no errors
   // If have any key values pair then redux form says
   // Oo I didn't submit this form due to errors :p
