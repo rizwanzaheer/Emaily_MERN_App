@@ -5,10 +5,10 @@ import _ from "lodash";
 import SurveyField from "./SurveyField";
 
 const FIELDS = [
-  { label: "Survey Title", name: "title" },
-  { label: "Subject Line", name: "subject" },
-  { label: "Email Body", name: "body" },
-  { label: "Recipient List", name: "emails" }
+  { label: "Survey Title", name: "title", noValueError: 'Survey Title' },
+  { label: "Subject Line", name: "subject", noValueError: 'Subject Line' },
+  { label: "Email Body", name: "body", noValueError: 'Email Body' },
+  { label: "Recipient List", name: "emails", noValueError: 'Recipient List Seperated with ","' }
 ];
 
 class SurveyForm extends Component {
@@ -53,9 +53,18 @@ function validate(values) {
   const errors = {};
   if (!values.title) {
     errors.title = 'You must provide a title!';
-  } else {
-    console.log('form submited successfuly!');
+  } 
+  if(!values.subject) {
+    errors.subject = 'You must provide a Subject!';
   }
+  if(!values.body) {
+    errors.body = 'You must provide a Email Body!';
+  }
+  _.each(FIELDS, ({name,noValueError, label}) => {
+    if(!values[name]){
+      errors[name] = 'You must provide ' + noValueError;
+    }
+  });
   // if errors obj is empty then redux form says 
   // Oo good to good with no errors
   // If have any key values pair then redux form says
