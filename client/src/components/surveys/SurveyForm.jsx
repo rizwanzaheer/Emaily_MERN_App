@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import _ from "lodash";
 import SurveyField from "./SurveyField";
-
+import validEmails from '../../utils/validateEmails';
 const FIELDS = [
   { label: "Survey Title", name: "title", noValueError: "Survey Title" },
   { label: "Subject Line", name: "subject", noValueError: "Subject Line" },
