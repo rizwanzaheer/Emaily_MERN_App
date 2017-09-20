@@ -37,11 +37,7 @@ class SurveyForm extends Component {
   render() {
     return (
       <div>
-        <form
-          onSubmit={this.props.handleSubmit(() => {
-            this.props.onSurveySubmit();
-          })}
-        >
+        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFields()}
           <NavLink className="red btn-flat white-text" to="/surveys">
             Cancel
@@ -81,5 +77,6 @@ function validate(values) {
 }
 export default reduxForm({
   validate,
-  form: "surveyForm"
+  form: "surveyForm",
+  destroyOnUnmount: false
 })(SurveyForm);
