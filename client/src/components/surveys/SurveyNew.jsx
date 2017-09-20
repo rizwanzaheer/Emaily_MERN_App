@@ -28,5 +28,5 @@ class SurveyNew extends Component {
 }
 
 export default reduxForm({
-  form: "surveyForm"
+form: "surveyForm"
 })(SurveyNew);

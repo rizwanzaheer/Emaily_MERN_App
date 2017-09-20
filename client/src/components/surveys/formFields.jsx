@@ -4,7 +4,7 @@ export default [
   { label: "Email Body", name: "body", noValueError: "Email Body" },
   {
     label: "Recipient List",
-    name: "emails",
+    name: "recipients",
     noValueError: 'Recipient List Seperated with "," !'
   }
 ];
