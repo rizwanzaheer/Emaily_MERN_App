@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import _ from "lodash";
 import SurveyField from "./SurveyField";
-import validEmails from '../../utils/validateEmails';
+import validEmails from "../../utils/validateEmails";
 const FIELDS = [
   { label: "Survey Title", name: "title", noValueError: "Survey Title" },
   { label: "Subject Line", name: "subject", noValueError: "Subject Line" },
@@ -37,8 +37,11 @@ class SurveyForm extends Component {
   render() {
     return (
       <div>
-        Survey Form with redux form!
-        <form onSubmit={this.props.handleSubmit(value => console.log(value))}>
+        <form
+          onSubmit={this.props.handleSubmit(() => {
+            this.props.onSurveySubmit();
+          })}
+        >
           {this.renderFields()}
           <NavLink className="red btn-flat white-text" to="/surveys">
             Cancel
@@ -55,6 +58,7 @@ class SurveyForm extends Component {
 }
 function validate(values) {
   const errors = {};
+  errors.emails = validEmails(values.emails || "");
   if (!values.title) {
     errors.title = "You must provide a title!";
   }
