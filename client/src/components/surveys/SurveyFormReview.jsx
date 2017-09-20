@@ -1,17 +1,39 @@
 // Survey form Review shows their fomr inputs for review
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import formFields from "./formFields";
+import * as actions from "../../actions";
 
 class SurveyFormReview extends Component {
+  constructor(props) {
+    super(props);
+    this.reviewFields = formFields.map(({ name, label }) => {
+      return (
+        <div key={label}>
+          <label htmlFor="#">{label}</label>
+          <div>{this.props.formValues[name]}</div>
+        </div>
+      );
+    });
+  }
+
   render() {
     return (
       <div>
-        <h2>Please Confirm your Entries!!!</h2>
+        <h5>Please Confirm your Entries!!!</h5>
+        {this.reviewFields}
         <button
-          className="yellow darken-3 btn-flat"
+          className="yellow white-text btn-flat darken-3"
           onClick={this.props.onCancel}
         >
           Back
+        </button>
+        <button
+          onClick={() => this.props.submitSurvey(this.props.formValues)}
+          className="green btn-flat white-text right"
+        >
+          Send Survey
+          <i className="material-icons right">email</i>
         </button>
       </div>
     );
@@ -19,8 +41,7 @@ class SurveyFormReview extends Component {
 }
 
 const mapStateToProps = state => {
-  console.info(state);
-  return {};
+  return { formValues: state.form.surveyForm.values };
 };
 
-export default connect(mapStateToProps)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(SurveyFormReview);
