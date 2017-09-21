@@ -10,6 +10,8 @@ const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport");
 
+mongoose.Promise = global.Promise;
+
 mongoose.connect(keys.mongoURI);
 
 const app = express();
@@ -17,8 +19,8 @@ const app = express();
 // body parser Any type of Http req
 // goes through here that why used!!!
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 // cookieSession
 app.use(
   cookieSession({

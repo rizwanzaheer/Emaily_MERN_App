@@ -1,5 +1,6 @@
 // Survey form Review shows their fomr inputs for review
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import formFields from "./formFields";
 import * as actions from "../../actions";
@@ -29,7 +30,8 @@ class SurveyFormReview extends Component {
           Back
         </button>
         <button
-          onClick={() => this.props.submitSurvey(this.props.formValues)}
+          onClick={() =>
+            this.props.submitSurvey(this.props.formValues, this.props.history)}
           className="green btn-flat white-text right"
         >
           Send Survey
@@ -44,4 +46,4 @@ const mapStateToProps = state => {
   return { formValues: state.form.surveyForm.values };
 };
 
-export default connect(mapStateToProps, actions)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));
