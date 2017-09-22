@@ -13,6 +13,12 @@ module.exports = app => {
   app.get("/api/surveys/thanks", (req, res) => {
     res.send("Thanks For Voting!");
   });
+
+  app.post('/api/surveys/webhooks', (req, res) =>{
+    console.log(req.body);
+    res.send({});
+  });
+
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     // Getting Data from request Obj which is Post in 'api/surveys' with fields
     const { title, subject, body, recipients } = req.body;
