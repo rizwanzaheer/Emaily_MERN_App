@@ -8,6 +8,7 @@ const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
 const keys = require("./config/keys");
 require("./models/User");
+require("./models/Survey");
 require("./services/passport");
 
 mongoose.Promise = global.Promise;
@@ -35,6 +36,7 @@ app.use(passport.session());
 // Calling Routes
 authRoutes(app);
 require("./routes/billingRoutes")(app);
+require('./routes/surveyRoutes')(app);
 
 // prod/ dev config
 
