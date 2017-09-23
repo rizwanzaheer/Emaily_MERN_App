@@ -1,7 +1,12 @@
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const express = require("express");
-const mongoose = require("mongoose");
+
+const { MongoClient } = require("mongodb");
+// const db = require('./db/db');
+const URL = "mongodb://localhost:27017/Emaily";
+// const mongoose = require("mongoose");
+
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
@@ -11,9 +16,26 @@ require("./models/User");
 require("./models/Survey");
 require("./services/passport");
 
-mongoose.Promise = global.Promise;
+// db.connect(URL, (err) => {
+//   if (err) {
+//     console.log('Unable to connect to Mongo.')
+//     process.exit(1)
+//   }
+// });
 
-mongoose.connect(keys.mongoURI);
+MongoClient.connect(URL, (err, db) => {
+  if (err) return;
+  const collection = db.collection("foods");
+  collection.insert({ name: "taco", tasty: true }, function(err, result) {
+    collection.find({ name: "taco" }).toArray(function(err, docs) {
+      console.log(docs);
+      db.close();
+    });
+  });
+});
+//mongoose.Promise = global.Promise;
+
+// mongoose.connect(keys.mongoURI);
 
 const app = express();
 
@@ -36,7 +58,7 @@ app.use(passport.session());
 // Calling Routes
 authRoutes(app);
 require("./routes/billingRoutes")(app);
-require('./routes/surveyRoutes')(app);
+require("./routes/surveyRoutes")(app);
 
 // prod/ dev config
 
