@@ -32,5 +32,7 @@
     "sendgrid": "^5.2.3",
     "stripe": "^4.24.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "forever": "^0.15.3"
+  }
 }

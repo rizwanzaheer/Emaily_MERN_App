@@ -2,10 +2,10 @@ const path = require("path");
 const PORT = process.env.PORT || 5000;
 const express = require("express");
 
-const { MongoClient } = require("mongodb");
+// const { MongoClient } = require("mongodb");
 // const db = require('./db/db');
-const URL = "mongodb://localhost:27017/Emaily";
-// const mongoose = require("mongoose");
+// const URL = "mongodb://localhost:27017/Emaily";
+const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
@@ -16,6 +16,7 @@ require("./models/User");
 require("./models/Survey");
 require("./services/passport");
 
+// These lines use for local Mongodb 
 // db.connect(URL, (err) => {
 //   if (err) {
 //     console.log('Unable to connect to Mongo.')
@@ -23,19 +24,24 @@ require("./services/passport");
 //   }
 // });
 
-MongoClient.connect(URL, (err, db) => {
-  if (err) return;
-  const collection = db.collection("foods");
-  collection.insert({ name: "taco", tasty: true }, function(err, result) {
-    collection.find({ name: "taco" }).toArray(function(err, docs) {
-      console.log(docs);
-      db.close();
-    });
-  });
-});
-//mongoose.Promise = global.Promise;
+// MongoClient.connect(URL, (err, db) => {
+//   if (err) return;
+//   const collection = db.collection("foods");
+//   collection.insert({ name: "taco", tasty: true }, (err, result) => {
+//     collection.find({ name: "taco" }).toArray((err, docs) => {
+//       console.log(docs);
+//       db.close();
+//     });
+//     db.collection("foods").count((err, count) => {
+//       if (err) throw err;
 
-// mongoose.connect(keys.mongoURI);
+//       console.log("Total Rows: " + count);
+//     });
+//   });
+// });
+mongoose.Promise = global.Promise;
+
+mongoose.connect(keys.mongoURI);
 
 const app = express();
 
