@@ -1,22 +1,23 @@
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const express = require("express");
+const keys = require("./config/keys");
 
-// const { MongoClient } = require("mongodb");
+// const { MongoClient, ObjectID } = require("mongodb");
+// var obj = new ObjectID();
 // const db = require('./db/db');
-// const URL = "mongodb://localhost:27017/Emaily";
 const mongoose = require("mongoose");
+// const URL = keys.localMongoURL;
 
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
-const keys = require("./config/keys");
 require("./models/User");
 require("./models/Survey");
 require("./services/passport");
 
-// These lines use for local Mongodb 
+// These lines use for local Mongodb
 // db.connect(URL, (err) => {
 //   if (err) {
 //     console.log('Unable to connect to Mongo.')
@@ -30,7 +31,6 @@ require("./services/passport");
 //   collection.insert({ name: "taco", tasty: true }, (err, result) => {
 //     collection.find({ name: "taco" }).toArray((err, docs) => {
 //       console.log(docs);
-//       db.close();
 //     });
 //     db.collection("foods").count((err, count) => {
 //       if (err) throw err;
@@ -38,6 +38,21 @@ require("./services/passport");
 //       console.log("Total Rows: " + count);
 //     });
 //   });
+//    delete many records "DeleteMany()"
+//    delete one records "DeleteOne()"
+//    find one and update record "findOneAndUpdate()"
+//    find delete records "findOndAndDelete()"
+//    db.collection('Users').insertOne({
+//      name: 'Rizwan',
+//      age: 24,
+//      location: 'Islamabad'
+//    },(err, result) => {
+//         if(err){
+//           return 'Unable to insert the Users data!';
+//         }
+//         console.log(JSON.stringify(result.ops[0]._id.getTimeStamp(), undefined, 2));
+//    });
+//    db.close();
 // });
 mongoose.Promise = global.Promise;
 
