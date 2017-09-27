@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const PostSchema = require('./post');
 
 const UserSchema = new Schema({
   name: {
@@ -10,7 +11,14 @@ const UserSchema = new Schema({
     },
     required: [true, "Name is required!"]
   },
-  postCount: Number
+  likes: Number,
+  posts: [PostSchema]
+});
+
+// virtual prop created on fly
+// ES6 getter & setter fun
+UserSchema.virtual('postCount').get(function () {
+  return this.posts.length;
 });
 
 const User = mongoose.model("user", UserSchema);
