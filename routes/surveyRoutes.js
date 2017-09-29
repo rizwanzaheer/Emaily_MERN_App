@@ -14,7 +14,7 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
-  app.get("/api/surveys/thanks", (req, res) => {
+  app.get("/api/surveys/:surveyId/:choice", (req, res) => {
     res.send("Thanks For Voting!");
   });
 
@@ -24,13 +24,32 @@ module.exports = app => {
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname);
         if (match)
-          return { email, surveyId: match.surveyId, choice: match.choice };
+          return {
+            email,
+            surveyId: match.surveyId,
+            choice: match.choice
+          };
       })
       // compact used to romove undefined records
       .compact()
       // UniqBy use to remove for dublicate records by
       // checking keys of 'email'/ 'suerveyId'
       .uniqBy("email", "surveyId")
+      .each(({ surveyId, email, choice }) => {
+        Survey.updateOne(
+          {
+            _id: surveyId,
+            recipients: {
+              $elemMatch: { email: email, responded: false }
+            }
+          },
+          {
+            $inc: { [choice]: 1 },
+            $set: { "recipients.$.responded": true },
+            lastResponded: new Date(),
+          }
+        ).exec();
+      })
       .value();
     console.log(events);
     res.send({});
