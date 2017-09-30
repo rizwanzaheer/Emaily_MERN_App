@@ -9,11 +9,9 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return (
-          <li>
-            <Link to="/auth/google">Login With Google </Link>
-          </li>
-        );
+        return <li>
+            <a href="/auth/google">Login With Google</a>
+          </li>;
       default:
         return [
           <li key='1'>
