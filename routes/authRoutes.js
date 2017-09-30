@@ -1,9 +1,9 @@
 const passport = require("passport");
 // Routes
 module.exports = app => {
-  app.get("/", (req, res) => {
-    res.send({ welcome: "Welcome in Emaily!" });
-  });
+  // app.get("/", (req, res) => {
+  //   res.send({ welcome: "Welcome in Emaily!" });
+  // });
   app.get(
     "/auth/google/",
     passport.authenticate("google", {
