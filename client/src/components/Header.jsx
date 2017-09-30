@@ -8,10 +8,12 @@ class Header extends Component {
     switch (this.props.auth) {
       case null:
         return;
+        break;
       case false:
         return <li>
-            <a href="/auth/google">Login With Google</a>
-          </li>;
+          <a href="/auth/google">Login With Google</a>
+        </li>
+        break;
       default:
         return [
           <li key='1'>
@@ -24,13 +26,14 @@ class Header extends Component {
             <NavLink to="/api/logout">Logout</NavLink>
           </li>
         ];
+      break;
     }
   }
   render() {
     return (
       <nav>
         <div className="nav-wrapper">
-          <NavLink className="brand-logo" to={this.props.auth ? "/surveys" : "/"}>
+          <NavLink className="left brand-logo" to={this.props.auth ? "/surveys" : "/"}>
             Emaily
           </NavLink>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
