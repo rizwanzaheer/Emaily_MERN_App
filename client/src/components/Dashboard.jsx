@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import SurveyList from './surveys/SurveysList';
 
 export default class Dashbord extends Component {
   render() {
     return (
       <div>
-        Dashbord
+        <SurveyList />
         <div className="fixed-action-btn">
           <NavLink to="/surveys/new" className="btn-floating btn-large red">
             <i className="large material-icons">add</i>
